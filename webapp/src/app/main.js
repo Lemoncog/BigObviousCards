@@ -10,15 +10,14 @@ HelloWorldView = Backbone.View.extend({
 		this.render();
 	},
 	render: function() { 
-		this.$el.html("<b> Hello World </b>");
+	
 	}
 });
-
 
 main = function() {
 	console.log("MAIN START");
 
-	var helloWorldView = new HelloWorldView({ el: $("#hello_holder")});
+	var helloWorldView = new HelloWorldView();
 }
 
 console.log("Main has loaded");
