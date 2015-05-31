@@ -4,6 +4,7 @@
 }
 body {
   margin: 5px;
+  background: #eee;
 }
 .LoginForm {
   width: 380px;

@@ -12,9 +12,9 @@ var LoginForm = React.createClass({
 	      		<input id="username" type="text" placeholder="Username"/>
 	      	</div>
 	      	<div className="group">
-	      		<input id="password" type="text" placeholder="Password" onChange={this.handleChange}/>
+	      		<input id="password" type="password" placeholder="Password" onChange={this.handleChange}/>
 	    	</div>
-	    	<div className="group">
+	    	<div>
 	    		<button id="submit" className="button buttonBlue" onClick={this.handleClick}>Submit</button>
 	    	</div>
     	</div>
