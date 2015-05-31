@@ -1,0 +1,38 @@
+<!DOCTYPE html><html><head>  
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="/bower_components/lodash/lodash.min.js"></script>
+	<script type="text/javascript" src="/bower_components/backbone/backbone.js"></script>
+	<script type="text/javascript" src="/bower_components/handlebars/handlebars.js"></script>
+	<script type="text/javascript" src="/js/jquery.mobile-1.4.5.js"></script>
+	<script type="text/javascript" src="/js/jqm-datebox-1.4.5.core.js"></script>
+	<script type="text/javascript" src="/js/jqm-datebox-1.4.5.mode.datebox.js"></script>
+	<script type="text/javascript">
+	window.onload = function () {
+	    main();
+	}
+	</script>
+	<script id="log-template" type="text/x-handlebars-template">
+		<b>Logging</b>
+		</br>
+		{{#each logs}}
+			{{this}}</br>
+		{{/each}}
+	</script>
+	<link rel="stylesheet" href="/stylesheets/jquery.mobile.css">
+	<link rel="stylesheet" href="/stylesheets/main.css">
+	<link rel="stylesheet" href="/stylesheets/jqm-datebox-1.4.5.css">
+	
+
+	</head><body>
+		<div id="sync_view">
+			<input type="text" data-role="datebox" data-options="{&quot;mode&quot;:&quot;datebox&quot;}">
+			<input type="text" data-role="datebox" data-options="{&quot;mode&quot;:&quot;timebox&quot;}">
+			<button class="syncButton">Sync</button>
+		</div>
+		<div id="log_holder"></div>
+		<script type="text/javascript" src="/app/main.js"></script>
+	
+
+</body></html>
