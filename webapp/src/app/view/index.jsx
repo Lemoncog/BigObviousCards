@@ -1,10 +1,14 @@
-app = function() {
+load = function() {
 var LoginForm = React.createClass({
   handleChange: function() {
 
   },
-  handleClick: function() {
+  handleLogin: function() {
   	console.log("Clicky click");
+
+    window.location.href="home.html";
+
+    /*Would usuall call an API and login here, but we will just move onto next page*/
   },
   render: function() {
     return (
@@ -16,7 +20,7 @@ var LoginForm = React.createClass({
 	      		<input id="password" type="password" placeholder="Password" onChange={this.handleChange}/>
 	    	</div>
 	    	<div>
-	    		<button id="submit" className="button buttonBlue" onClick={this.handleClick}>Submit</button>
+	    		<button id="submit" className="button buttonBlue" onClick={this.handleLogin}>Submit</button>
 	    	</div>
     	</div>
     );

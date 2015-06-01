@@ -16,7 +16,7 @@ gulp.task('webserver', function() {
 });
 
 gulp.task('deploy', function () {
-    return gulp.src(['src/*.html', 'src/app/*.js', 'src/scripts/*.js'])
+    return gulp.src(['src/app/*.html', 'src/app/*.js', 'src/scripts/*.js'])
         .pipe(gulp.dest('dist'));
 });
 
