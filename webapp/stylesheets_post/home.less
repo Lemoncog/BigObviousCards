@@ -1,6 +1,7 @@
 @import "palette";
 
 @icon-width:14px;
+@dropdown-width:320px;
 
 .dropdown-container {
 	&.show > .dropdown-display {
@@ -18,7 +19,7 @@
 
 .dropdown-basic {
 	position: relative;
-		width: 100%;
+		width: @dropdown-width;
 		color: @primaryColor;
 		font-size: 16 	px;
 		line-height: 20px;
@@ -31,13 +32,13 @@
 }
 
 i {
-	position:relative;
+	position:absolute;
+	right: 12px;
 	width:@icon-width;
 	height: 20px;
 	font-size:1.125em;
 	font-weight:bold;
 	padding-right:12px;
-	margin-left: 10px;
 	text-align:right;
 }
 
@@ -45,7 +46,6 @@ i {
 	.dropdown-basic;	
 	background: @primaryColor;
 	color: @textPrimaryColor;
-	width: 340px;
 }
 
 .dropdown-display {
