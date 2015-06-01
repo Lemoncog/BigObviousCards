@@ -1,5 +1,7 @@
 @import "palette";
 
+@icon-width:14px;
+
 .dropdown-container {
 	&.show > .dropdown-display {
 	   -ms-transform: scale(1,1); /* IE 9 */
@@ -14,11 +16,8 @@
 	}
 }
 
-.dropdown-display {
-	position:absolute;
-
-	.dropdown-item {
-		position: relative;
+.dropdown-basic {
+	position: relative;
 		width: 100%;
 		color: @primaryColor;
 		font-size: 16 	px;
@@ -28,6 +27,31 @@
 		background: @textPrimaryColor;
 		border: 0;
 		padding: 12px 12px 12px 6px;
-		border-bottom: 2px solid @dividerColor;
+		border-bottom: 1px solid @dividerColor;
+}
+
+i {
+	position:relative;
+	width:@icon-width;
+	height: 20px;
+	font-size:1.125em;
+	font-weight:bold;
+	padding-right:12px;
+	margin-left: 10px;
+	text-align:right;
+}
+
+.dropdown-selected {
+	.dropdown-basic;	
+	background: @primaryColor;
+	color: @textPrimaryColor;
+	width: 340px;
+}
+
+.dropdown-display {
+	position:absolute;
+
+	.dropdown-item {
+		.dropdown-basic;
 	}
 }

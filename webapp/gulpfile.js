@@ -16,12 +16,12 @@ gulp.task('webserver', function() {
 });
 
 gulp.task('deploy', function () {
-    return gulp.src(['src/app/*.html', 'src/app/*.js', 'src/scripts/*.js'])
+    return gulp.src(['src/app/*.html', 'src/app/*.js', 'src/scripts/*.js', 'src/stylesheets/*.css', 'src/stylesheets/**'])
         .pipe(gulp.dest('dist'));
 });
 
 gulp.task('watch', function () {
-  gulp.watch(['./*.*', './stylesheets_post/**/*.less', './src/*.html', './src/app/view/*.jsx'], ['less', 'jsxTransform', 'deploy']);
+  gulp.watch(['./*.*', './stylesheets_post/**/*.less', './src/app/*.html', './src/app/view/*.jsx'], ['less', 'jsxTransform', 'deploy']);
 });
 
 gulp.task('less', function () {
@@ -29,7 +29,7 @@ gulp.task('less', function () {
     .pipe(less({
       paths: [ path.join(__dirname, 'less', 'includes') ]
     }))
-    .pipe(gulp.dest('dist/stylesheets'));
+    .pipe(gulp.dest('dist'));
 });
 
 gulp.task('jsxTransform', function () {

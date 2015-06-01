@@ -16,7 +16,6 @@ var Dropdown = React.createClass({
       listVisible: false
     };
   },
-  
   select: function(item) {
     this.props.selected = item;
   },
@@ -33,18 +32,28 @@ var Dropdown = React.createClass({
   },
       
   render: function() {
+    var tmpThis = this;
     var options = this.props.list.map(function (item) {
+      
+      var noMatch = (item != tmpThis.props.selected);
+      var itemView;
+      if(noMatch) {
+        itemView = <div onClick={tmpThis.select.bind(null, item)} className="dropdown-item">{item.name}</div>
+      }
       return (
-        <div className="dropdown-item">{item.name}</div>
+        itemView
       );
     });
 
     return (
       <div className="Dropdown">
+
         <div className={"dropdown-container" + (this.state.listVisible ? " show" : " hide")}  onClick={this.show}>
-          <div className="dropdown-selected">{this.props.selected.name}</div>
+          <div className="dropdown-selected">
+            {this.props.selected.name}
+            <i className="fa fa-caret-down"></i> 
+          </div>
           <div className="dropdown-display">{options}</div>
-          <i className="fa fa-angle down"></i>
         </div>
       </div>
       );
