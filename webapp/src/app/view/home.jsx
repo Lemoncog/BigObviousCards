@@ -4,7 +4,7 @@ load = function() {
     render: function() {
       return (
         <div className="DetailView">
-          <b>is Jason</b>
+          <b>is being cared for by Jason</b>
         </div>
       );
     }
@@ -84,6 +84,7 @@ var Dropdown = React.createClass({
     render: function() {
       return (
       	<div className="HomeView">
+          <h1>TrackCare</h1>
           <ClientSelectView />
           <DetailView />
   	    </div>

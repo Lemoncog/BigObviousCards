@@ -1,7 +1,30 @@
 @import "palette";
 
 @icon-width:14px;
-@dropdown-width:320px;
+
+.dropdown-width {
+	width: 320px;	
+	@media screen and (max-width: 320px) {
+		width:200px;
+	}
+}
+
+#home_holder {
+	width: 600px;	
+	margin: 0 auto;
+	@media screen and (max-width: 800px) {
+		width: 100%;
+	}
+}
+
+.ClientSelectView {
+	display: inline-block;
+}
+
+.DetailView {
+	display: inline-block;
+	padding-left: 12px;
+}
 
 .dropdown-container {
 	&.show > .dropdown-display {
@@ -19,7 +42,7 @@
 
 .dropdown-basic {
 	position: relative;
-		width: @dropdown-width;
+		.dropdown-width;
 		color: @primaryColor;
 		font-size: 16 	px;
 		line-height: 20px;
