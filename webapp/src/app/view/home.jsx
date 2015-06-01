@@ -1,13 +1,34 @@
 load = function() {
+
+  var DetailView = React.createClass({
+    render: function() {
+      return (
+        <b>Ellie Gibson</b>
+      );
+    }
+  })
+
+
+  var ClientSelectView = React.createClass({
+    render: function() {
+      return (
+        <div className="ClientSelectView">
+          <b>Select Client</b>
+        </div>
+      );
+    }
+  }); 
+
+
   var HomeView = React.createClass({
     handleChange: function() {
-    }
-  },
+    },
     render: function() {
       return (
       	<div className="HomeView">
-  	    	<h1>Welcome home</h1><h1>Going to have a cool panel pn teh right</h1>
-      	</div>
+          <ClientSelectView />
+          <DetailView />
+  	    </div>
       );
     }
   });

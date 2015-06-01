@@ -21,7 +21,7 @@ gulp.task('deploy', function () {
 });
 
 gulp.task('watch', function () {
-  gulp.watch(['./*.*', './stylesheets_post/*.*', './src/*.html', './src/app/**/*.*'], ['less', 'jsxTransform', 'deploy']);
+  gulp.watch(['./*.*', './stylesheets_post/*.*', './src/*.html', './src/app/view/*.jsx'], ['less', 'jsxTransform', 'deploy']);
 });
 
 gulp.task('less', function () {
