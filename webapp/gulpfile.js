@@ -1,11 +1,12 @@
 var gulp = require('gulp'),
   webserver = require('gulp-webserver'),
+  react = require('gulp-react'),
   less = require('gulp-less'),
   path = require('path'),
   vulcanize = require('gulp-vulcanize');
 
 gulp.task('webserver', function() {
-  gulp.src('src/')
+  gulp.src('dist/')
     .pipe(webserver({
       host: '0.0.0.0',
       livereload: true,
@@ -15,17 +16,12 @@ gulp.task('webserver', function() {
 });
 
 gulp.task('deploy', function () {
-    return gulp.src('src/index.html')
-        .pipe(vulcanize({
-            abspath: '',
-            excludes: [],
-            stripExcludes: false
-        }))
-        .pipe(gulp.dest('dist/'));
+    return gulp.src(['src/*.html', 'src/app/*.js', 'src/scripts/*.js'])
+        .pipe(gulp.dest('dist'));
 });
 
 gulp.task('watch', function () {
-  gulp.watch(['./*.*', './stylesheets_post/*.*', './webapp/*.*'], ['less']);
+  gulp.watch(['./*.*', './stylesheets_post/*.*', './src/*.html', './src/app/**/*.*'], ['less', 'jsxTransform', 'deploy']);
 });
 
 gulp.task('less', function () {
@@ -33,7 +29,13 @@ gulp.task('less', function () {
     .pipe(less({
       paths: [ path.join(__dirname, 'less', 'includes') ]
     }))
-    .pipe(gulp.dest('src/stylesheets'));
+    .pipe(gulp.dest('dist/stylesheets'));
 });
 
-gulp.task('default', ['webserver', 'watch']);
+gulp.task('jsxTransform', function () {
+    return gulp.src('./src/app/view/*.jsx')
+        .pipe(react())
+        .pipe(gulp.dest('dist'));
+});
+
+gulp.task('default', ['jsxTransform', 'less', 'deploy', 'webserver', 'watch']);

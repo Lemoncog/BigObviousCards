@@ -2,7 +2,8 @@
   "name": "package",
   "version": "0.0.0",
   "dependencies": {
-    "gulp-less": "~3.0.2"
+    "gulp-less": "~3.0.2",
+    "gulp-react": "~3.0.1"
   },
   "devDependencies": {
     "gulp-connect": "~2.0.5",
