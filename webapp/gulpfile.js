@@ -3,7 +3,7 @@ var gulp = require('gulp'),
   react = require('gulp-react'),
   less = require('gulp-less'),
   path = require('path'),
-  vulcanize = require('gulp-vulcanize');
+  browserify = require('gulp-browserify');
 
 gulp.task('webserver', function() {
   gulp.src('dist/')
@@ -16,8 +16,23 @@ gulp.task('webserver', function() {
 });
 
 gulp.task('deploy', function () {
-    return gulp.src(['src/app/*.html', 'src/app/*.js', 'src/scripts/*.js', 'src/stylesheets/*.css', 'src/stylesheets/**'])
+    return gulp.src(['src/app/*.html', 
+                     'src/app/*.js',
+                     'src/scripts/*.js',
+                     'src/stylesheets/*.css',
+                    'src/stylesheets/**'])
         .pipe(gulp.dest('dist'));
+});
+
+// Basic usage 
+gulp.task('scripts', function() {
+    // Single entry point to browserify 
+    gulp.src('src/app/view/*.js')
+        .pipe(browserify({
+          insertGlobals : true,
+          debug : !gulp.env.production
+        }))
+        .pipe(gulp.dest('dist'))
 });
 
 gulp.task('watch', function () {
