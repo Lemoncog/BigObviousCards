@@ -6,15 +6,13 @@ module.exports = React.createClass({
   },
   handleLogin: function() {
   	console.log("Clicky click");
-
-    //window.location.href="home.html";
-    window.activeSession.id = "LOGGEDINJASON";
-
+    this.props.submissionHandler.onSubmit();
     /*Would usually call an API and login here, but we will just move onto next page*/
   },
   render: function() {
     return (
     	<div className="LoginForm">
+        <h1>Wait 3 seconds or click "Submit" to progresss</h1> 
 	    	<div className="group">
 	      		<input id="username" type="text" placeholder="Username"/>
 	      	</div>
