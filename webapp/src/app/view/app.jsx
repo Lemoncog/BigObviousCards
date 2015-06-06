@@ -6,6 +6,7 @@ Backbone.$ = $;
 var React = require('react');
 var HomeView = require('./HomeView');
 var LoginView = require('./LoginForm');
+var RecordView = require('./RecordView');
 
 window.activeSession = { id: null };
 
@@ -16,12 +17,24 @@ var UserModel = Backbone.Model.extend({
 	}
 });
 
+// var ClientCollection = 
+
+var CustomerModel = Backbone.Model.extend({
+
+})
+
 var ClientModel = Backbone.Model.extend({
 	defaults: {
 		clientName : 'Ellie Gibson',
 		carerName: 'Water'
 	}
-})
+});
+
+var RecordModel = Backbone.Model.extend({
+	defaults : {
+		started : "WHATWHAT"
+	}
+});
 
 GLOBAL_USER = new UserModel();
 
@@ -31,7 +44,16 @@ var LoginController = Backbone.Model.extend({
   	GLOBAL_USER.set('loggedIn', true);
   	GLOBAL_ROUTER.navigate("home", {trigger: true});
   }
-}) 
+});
+
+var RecordController = Backbone.Model.extend({
+	onStartShift: function() {
+		console.log("Shift start");
+	},
+	onStopShift: function() {
+		console.log("Shift end");
+	}
+})
 
 var HomeController = Backbone.Model.extend({
 	clientSelected: function(client) {
@@ -48,7 +70,20 @@ var AppRouter = Backbone.Router.extend({
 		'' : 'track',
 		'home' : 'track',
 		'track/client/:id' : 'track',
-		'login' : 'login'
+		'login' : 'login',
+		'record/:started': 'record'
+	},
+	record: function(started) {
+		if(this.loginCheck) {
+
+			var record = new RecordModel({ started : (started == "started") });
+
+
+			React.render(
+				  <RecordView model={record} controller={new RecordController()}/>,
+				  document.getElementById('holder')
+			);	
+		}
 	},
 	loginCheck: function() {
 		if(!GLOBAL_USER.get('loggedIn')) {
