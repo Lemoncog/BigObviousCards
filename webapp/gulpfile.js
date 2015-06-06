@@ -43,7 +43,7 @@ gulp.task('less', function () {
 });
 
 gulp.task('copyModules', function() {
-        return gulp.src(['src/node_modules/**/*'])
+  return gulp.src(['src/node_modules/**/*'])
         .pipe(gulp.dest('tmp/node_modules/'));   
 })
 
@@ -60,7 +60,7 @@ gulp.task('jsxTransform', function () {
 });
 
 gulp.task('watch', function () {
-  gulp.watch(['./*.*', './stylesheets_post/**/*.less', './src/app/*.html', './src/app/view/*.jsx'], ['less', 'jsxTransform', 'copyJS', 'copyModules', 'copy']);
+  gulp.watch(['./*.*', './stylesheets_post/**/*.less', './src/app/*.html', './src/app/view/*.jsx'], ['less', 'jsxTransform', 'copyJS', 'copy']);
 });
 
 gulp.task('default', ['jsxTransform', 'copyJS',  'copyModules', 'less', 'copy', 'webserver', 'watch']);

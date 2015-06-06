@@ -9,11 +9,11 @@ module.exports = React.createClass({
   render: function() {
     return (
     	<div className="HomeView">
-                    <h1>TrackCare</h1>
-                    <b>Welcomes {this.props.model.get('name')} </b><div></div>
-                    <ClientSelectView />
-                    <DetailView />
-                   </div> 
+          <h1>TrackCare</h1>
+          <b>Welcomes {this.props.userModel.get('name')} </b><div></div>
+          <ClientSelectView />
+          <DetailView />
+      </div> 
     );
   }
 });

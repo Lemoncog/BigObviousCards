@@ -12,7 +12,6 @@ module.exports = React.createClass({
   render: function() {
     return (
     	<div className="LoginForm">
-        <h1>Wait 3 seconds or click "Submit" to progresss</h1> 
 	    	<div className="group">
 	      		<input id="username" type="text" placeholder="Username"/>
 	      	</div>
