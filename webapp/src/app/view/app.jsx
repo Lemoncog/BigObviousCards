@@ -10,11 +10,30 @@ var LoginView = require('./LoginForm');
 window.activeSession = { id: null };
 
 var AppRouter = Backbone.Router.extend({
-
+	routes: {
+		'' : 'home',
+		'home' : 'home',
+		'login' : 'login'	
+	},
+	home: function () {
+		console.log("home called");
+		React.render(
+			  <HomeView model={this} submissionHandler={this}/>,
+			  document.getElementById('holder')
+		);
+	},
+	login: function() {
+		console.log("login called");
+		React.render(
+			  <LoginView submissionHandler={this}/>,
+			  document.getElementById('holder')
+		);
+	}
 });
 
 var HomeModel = Backbone.Model.extend({
   defaults: {
+  	router: new AppRouter(),
     name: 'Jason',
     loggedIn: false
   },
@@ -24,25 +43,16 @@ var HomeModel = Backbone.Model.extend({
   },
   onUserChange: function() {
   	if(this.loggedIn) {
-  		//this.router.navigate("login", {trigger: true});
-		this.view = React.render(
-			  <HomeView model={this} submissionHandler={this}/>,
-			  document.getElementById('holder')
-			);
+  		this.router.navigate("home", {trigger: true});
 	} else {
-  		//this.router.navigate("home", {trigger: true});
-		this.view = React.render(
-			  <LoginView submissionHandler={this}/>,
-			  document.getElementById('holder')
-			);
-	    }
+  		this.router.navigate("login", {trigger: true, replace:  true});
 	}
+  }
 });
 
-Backbone.history.start();
-var appRouter = new AppRouter();
 testmod = new HomeModel();
-testmod.set("router", appRouter);
+
+Backbone.history.start();
 testmod.onUserChange();
 
 var testTimer = setInterval(function () 

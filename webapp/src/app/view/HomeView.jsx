@@ -10,7 +10,7 @@ module.exports = React.createClass({
     return (
     	<div className="HomeView">
                     <h1>TrackCare</h1>
-                    <b>Welcomes {this.props.model.get('name')}</b>
+                    <b>Welcomes {this.props.model.get('name')} </b><div></div>
                     <ClientSelectView />
                     <DetailView />
                    </div> 
