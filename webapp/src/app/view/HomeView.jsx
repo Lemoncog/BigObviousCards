@@ -11,8 +11,8 @@ module.exports = React.createClass({
     	<div className="HomeView">
           <h1>TrackCare</h1>
           <b>Welcomes {this.props.userModel.get('name')} </b><div></div>
-          <ClientSelectView />
-          <DetailView />
+          <ClientSelectView clientModel={this.props.clientModel} changeListener={this.props.controller} />
+          <DetailView clientModel={this.props.clientModel} changeListener={this.props.controller} />
       </div> 
     );
   }

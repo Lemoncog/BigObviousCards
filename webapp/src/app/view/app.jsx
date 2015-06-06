@@ -11,10 +11,17 @@ window.activeSession = { id: null };
 
 var UserModel = Backbone.Model.extend({
 	defaults : {
-		loggedIn: false,
+		loggedIn: true,
 		name: 'Cactus'
 	}
 });
+
+var ClientModel = Backbone.Model.extend({
+	defaults: {
+		clientName : 'Ellie Gibson',
+		carerName: 'Water'
+	}
+})
 
 GLOBAL_USER = new UserModel();
 
@@ -26,13 +33,22 @@ var LoginController = Backbone.Model.extend({
   }
 }) 
 
+var HomeController = Backbone.Model.extend({
+	clientSelected: function(client) {
+		console.log('clientSelected = ' + client);
 
+		//Query our model, find who is carer, update.
+		//TODO - Use a real model, query on unique ID.
+		GLOBAL_ROUTER.navigate("track/client/" + client, {trigger: true});
+	}
+});
 
 var AppRouter = Backbone.Router.extend({
 	routes: {
-		'' : 'home',
-		'home' : 'home',
-		'login' : 'login'	
+		'' : 'track',
+		'home' : 'track',
+		'track/client/:id' : 'track',
+		'login' : 'login'
 	},
 	loginCheck: function() {
 		if(!GLOBAL_USER.get('loggedIn')) {
@@ -41,13 +57,25 @@ var AppRouter = Backbone.Router.extend({
 		}
 		return true;
 	},
-	home: function () {
-		console.log("home called");
+	track: function (id) {
+		console.log("home called id=" + id);
+
+		//No id, use defaults
+		if(!id) {
+			id = 'Gandalf';
+		}
+
+		var dummyData = [];
+		dummyData['Sam Wise'] = "Kitness";
+		dummyData['Frodo'] = "Ellie";
+		dummyData['Gandalf'] = "Molly";
+
+		var clientModel = new ClientModel({ clientName : id, carerName : dummyData[id]});
 
 		//Always do a login check
 		if(this.loginCheck()) {
 			React.render(
-				  <HomeView userModel={new UserModel()}/>,
+				  <HomeView clientModel={clientModel} controller={new HomeController()} userModel={new UserModel()}/>,
 				  document.getElementById('holder')
 			);
 		}

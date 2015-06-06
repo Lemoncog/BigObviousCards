@@ -7,7 +7,7 @@ module.exports = React.createClass({
     };
   },
   select: function(item) {
-    this.props.selected = item;
+    this.props.changeListener.onDropdownChange(this.props.selected, item);
   },
         
   show: function() {
@@ -28,7 +28,7 @@ module.exports = React.createClass({
       var noMatch = (item != tmpThis.props.selected);
       var itemView;
       if(noMatch) {
-        itemView = <div onClick={tmpThis.select.bind(null, item)} className="dropdown-item">{item.name}</div>
+        itemView = <div onClick={tmpThis.select.bind(null, item)} className="dropdown-item">{item}</div>
       }
       return (
         itemView
@@ -40,7 +40,7 @@ module.exports = React.createClass({
 
         <div className={"dropdown-container" + (this.state.listVisible ? " show" : " hide")}  onClick={this.show}>
           <div className="dropdown-selected">
-            {this.props.selected.name}
+            {this.props.selected}
             <i className="fa fa-caret-down"></i> 
           </div>
           <div className="dropdown-display">{options}</div>
