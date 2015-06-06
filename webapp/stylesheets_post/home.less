@@ -10,8 +10,12 @@
 }
 
 .col-centered {
-    display: table;
+	width: 50%;
     margin: 0 auto;
+
+    @media screen and (max-width: 520px) {
+    	width: 80%;
+    }
 }
 
 .ClientSelectView {
