@@ -61,7 +61,7 @@ var HomeController = Backbone.Model.extend({
 
 		//Query our model, find who is carer, update.
 		//TODO - Use a real model, query on unique ID.
-		GLOBAL_ROUTER.navigate("track/client/" + client, {trigger: true});
+		GLOBAL_ROUTER.navigate("track/client/" + client, {trigger: true, replace: true});
 	}
 });
 

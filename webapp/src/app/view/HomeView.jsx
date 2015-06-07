@@ -8,7 +8,7 @@ module.exports = React.createClass({
   },
   render: function() {
     return (
-    	<div className="HomeView">
+    	<div className="HomeView col-centered" >
           <h1>TrackCare</h1>
           <b>Welcomes {this.props.userModel.get('name')} </b><div></div>
           <ClientSelectView clientModel={this.props.clientModel} changeListener={this.props.controller} />
