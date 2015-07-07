@@ -11,10 +11,22 @@ window.activeSession = { id: null };
 var UserModel = Backbone.Model.extend({
        defaults : {
                loggedIn: true,
-               name: 'Cactus'
+               name: 'Jackson'
        }
 });
 
+var Bug = Backbone.Model.extend({
+
+})
+
+var BugsModel = Backbone.Model.extend({
+	defaults : {
+		bugs: []
+	},
+	addBug: function(bug) {
+		this.get('bugs').push(bug);
+	}
+})
 
 var HomeController = Backbone.Model.extend({
 });
@@ -27,8 +39,13 @@ var AppRouter = Backbone.Router.extend({
 	home: function () {
 		console.log("home called");
 
+
+		//Stick this elsewhere to load
+		bugsModel = new BugsModel();
+		bugsModel.addBug(new Bug({ failedTest : "uk.co.bbc.crash.whenSomethingThenSomething" }));
+
 		React.render(
-			  <HomeView controller={new HomeController()} userModel={new UserModel()}/>,
+			  <HomeView bugsModel={bugsModel} controller={new HomeController()} userModel={new UserModel()}/>,
 			  document.getElementById('holder')
 		);
 	}
