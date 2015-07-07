@@ -15,16 +15,16 @@ var UserModel = Backbone.Model.extend({
        }
 });
 
-var Bug = Backbone.Model.extend({
+var Info = Backbone.Model.extend({
 
 })
 
-var BugsModel = Backbone.Model.extend({
+var InfoListModel = Backbone.Model.extend({
 	defaults : {
-		bugs: []
+		infoList: []
 	},
-	addBug: function(bug) {
-		this.get('bugs').push(bug);
+	addInfo: function(info) {
+		this.get('infoList').push(info);
 	}
 })
 
@@ -41,11 +41,13 @@ var AppRouter = Backbone.Router.extend({
 
 
 		//Stick this elsewhere to load
-		bugsModel = new BugsModel();
-		bugsModel.addBug(new Bug({ failedTest : "uk.co.bbc.crash.whenSomethingThenSomething" }));
+		infoListModel = new InfoListModel();
+		infoListModel.addInfo(new Info({ 
+			description: "Failed?",
+			title : "uk.co.bbc.crash.whenSomethingThenSomething"}));
 
 		React.render(
-			  <HomeView bugsModel={bugsModel} controller={new HomeController()} userModel={new UserModel()}/>,
+			  <HomeView infoListModel={infoListModel} controller={new HomeController()} userModel={new UserModel()}/>,
 			  document.getElementById('holder')
 		);
 	}

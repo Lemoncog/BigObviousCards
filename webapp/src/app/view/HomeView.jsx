@@ -10,8 +10,8 @@ module.exports = React.createClass({
           <h1>Hello World</h1>
           <b>Welcomes {this.props.userModel.get('name')} </b><div></div>
 
-          {this.props.bugsModel.get('bugs').map(function(bug, i) {
-            return ( <VisualInfo/> );
+          {this.props.infoListModel.get('infoList').map(function(info, i) {
+            return ( <VisualInfo info={info}/> );
           })}          
       </div> 
     );
